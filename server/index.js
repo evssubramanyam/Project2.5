@@ -13,9 +13,9 @@ const db = new pg.Client({
   database : "Project",
   password : "Vivek2005",
   port : 5432
-});
+});//change password whenever committed
 
-db.connect();
+db.connect();//db connection
 
 app.use(cors()); // Use the CORS middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,10 +31,23 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port http://localhost:${port}`);
+});
+
+//vivek starts here
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
   try {
     await db.query("INSERT INTO login (email, password) VALUES ($1, $2)", [email, password]);
+    var email2=await email.replace("@","_");
+    const dbcreate=`CREATE TABLE stocks_${email2}(name varchar(100) not null,qty INT DEFAULT 1,price INT not null,buydate DATE)`;
+    await db.query(dbcreate);
     console.log("success");
   } catch (err) {
     console.log(err);
@@ -60,10 +73,16 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
 
-app.listen(port, () => {
-  console.log(`Server running on port http://localhost:${port}`);
-});
+app.post("/assetadd", async(req,res)=>{
+  const {email,stockname, qty, price, buydate} = req.body;
+  try {
+    var email2=email.replace("@","_");
+    const queryy=`INSERT INTO stocks_${email2}(name,qty,price,buydate) VALUES (${stockname}, ${qty}, ${price}, ${buydate})`;
+    await db.query(queryy);
+    console.log("success");
+    res.send("Successfully added");
+  } catch (err) {
+    console.log(err);
+  }
+})

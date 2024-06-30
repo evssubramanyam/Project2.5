@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import Form from "./components/Form";
 
-var userIsRegistered = true;
+var userIsRegistered = false;
 
 function App() {
   return (
