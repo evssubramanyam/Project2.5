@@ -11,7 +11,7 @@ const db = new pg.Client({
   user : "postgres",
   host : "localhost",
   database : "Project",
-  password : "Vivek2005",
+  password : "2307",
   port : 5432
 });
 
@@ -58,6 +58,18 @@ app.post("/login", async (req, res) => {
     console.log(err);
     res.status(500).json({ message: "Server error" });
   }
+});
+
+app.get('/api/message', (req, res) => {
+  res.json({
+    "displayName": "John Doe",
+    "emails": [
+      {
+        "value": "john.doe@example.com"
+      }
+    ]
+  }
+  );
 });
 
 app.get('*', (req, res) => {
