@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../Form.css"; // Importing the CSS file
+// import "../Form.css"; // Importing the CSS file
 
 function Form() {
   const [isLogin, setIsLogin] = useState(true);

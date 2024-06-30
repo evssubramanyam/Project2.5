@@ -11,9 +11,10 @@ const db = new pg.Client({
   user : "postgres",
   host : "localhost",
   database : "Project",
-  password : "Vivek2005",
+  //change password whenever committed
+  password : "2307",
   port : 5432
-});//change password whenever committed
+});
 
 db.connect();//db connection
 
@@ -46,7 +47,7 @@ app.post("/register", async (req, res) => {
   try {
     await db.query("INSERT INTO login (email, password) VALUES ($1, $2)", [email, password]);
     var email2=await email.replace("@","_");
-    const dbcreate=`CREATE TABLE stocks_${email2}(name varchar(100) not null,qty INT DEFAULT 1,price INT not null,buydate DATE)`;
+    const dbcreate=`CREATE TABLE stocks_${email2}(name varchar(100) not null,qty INT DEFAULT 1,price INT not null,buydate varchar(100))`;
     await db.query(dbcreate);
     console.log("success");
   } catch (err) {
@@ -76,9 +77,12 @@ app.post("/login", async (req, res) => {
 
 app.post("/assetadd", async(req,res)=>{
   const {email,stockname, qty, price, buydate} = req.body;
+  console.log(email,stockname, qty, price, buydate);
+  let date2 = String(buydate);
+  // console.log(typeof(date2));
   try {
     var email2=email.replace("@","_");
-    const queryy=`INSERT INTO stocks_${email2}(name,qty,price,buydate) VALUES (${stockname}, ${qty}, ${price}, ${buydate})`;
+    const queryy=`INSERT INTO stocks_${email2}(name,qty,price) VALUES (${stockname}, ${qty}, ${price})`;
     await db.query(queryy);
     console.log("success");
     res.send("Successfully added");

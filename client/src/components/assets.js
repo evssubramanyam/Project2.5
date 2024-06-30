@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import Axios for HTTP requests
+import axios from 'axios';
 
 const Assets = () => {
   const [assets, setAssets] = useState([]);
+  const [email, setEmail] = useState('');
   const [stockName, setStockName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
@@ -13,20 +14,20 @@ const Assets = () => {
   };
 
   const addAsset = () => {
-    if (stockName.trim() !== '' && quantity.trim() !== '' && price.trim() !== '' && buyDate.trim() !== '') {
+    if (email.trim() !== '' && stockName.trim() !== '' && quantity.trim() !== '' && price.trim() !== '' && buyDate.trim() !== '') {
       const newAsset = {
-        stockName: stockName.trim(),
-        quantity: quantity.trim(),
+        email: email.trim(),
+        stockname: stockName.trim(),
+        qty: quantity.trim(),
         price: price.trim(),
-        buyDate: buyDate.trim()
+        buydate: buyDate.trim()
       };
-      
-      // Send data to backend
-      axios.post('http://localhost:5000/addAsset', newAsset)
+
+      axios.post('http://localhost:5000/assetadd', newAsset)
         .then(response => {
           console.log('Asset added successfully:', response.data);
-          // Optionally, you can update state or perform any actions upon successful submission
-          setAssets([...assets, newAsset]); // Update local state with new asset
+          setAssets([...assets, newAsset]);
+          setEmail('');
           setStockName('');
           setQuantity('');
           setPrice('');
@@ -34,20 +35,20 @@ const Assets = () => {
         })
         .catch(error => {
           console.error('Error adding asset:', error);
-          // Handle error scenarios
         });
     }
-  };
-
-  const removeAsset = (index) => {
-    const newAssets = assets.filter((_, i) => i !== index);
-    setAssets(newAssets);
   };
 
   return (
     <div>
       <h2>Assets Tracker</h2>
       <div>
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => handleInputChange(e, setEmail)} 
+          placeholder="Email" 
+        />
         <input 
           type="text" 
           value={stockName} 
@@ -76,8 +77,7 @@ const Assets = () => {
       <ul>
         {assets.map((asset, index) => (
           <li key={index}>
-            <strong>{asset.stockName}</strong> - Quantity: {asset.quantity}, Price: ${asset.price}, Buy Date: {asset.buyDate}
-            <button onClick={() => removeAsset(index)}>Remove</button>
+            <strong>{asset.stockname}</strong> - Quantity: {asset.qty}, Price: ${asset.price}, Buy Date: {asset.buydate}
           </li>
         ))}
       </ul>

@@ -1,4 +1,4 @@
-/* Center the form container on the screen */
+/* Center the form container on the screen
 .form-container {
     display: flex;
     flex-direction: column;
@@ -118,4 +118,4 @@
       font-size: 14px;
     }
   }
-  
+   */
