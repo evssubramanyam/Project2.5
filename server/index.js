@@ -11,7 +11,7 @@ const db = new pg.Client({
   user : "postgres",
   host : "localhost",
   database : "Project",
-  password : "Vivek2005",
+  password : "2307",
   port : 5432
 });//change password whenever committed
 
@@ -73,6 +73,24 @@ app.post("/login", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+app.get('/api/message', (req, res) => {
+  res.json({
+    "displayName": "John Doe",
+    "emails": [
+      {
+        "value": "john.doe@example.com"
+      }
+    ]
+  }
+  );
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+>>>>>>> 0481b2a9e1099aa53fec50752c06b4e7a793a5ea
 
 app.post("/assetadd", async(req,res)=>{
   const {email,stockname, qty, price, buydate} = req.body;

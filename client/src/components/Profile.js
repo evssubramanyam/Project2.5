@@ -7,16 +7,17 @@ const Profile = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/login', { withCredentials: true })
-      .then(response => {
-        console.log('Authenticated');
-        setUser(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-        console.log('Not authenticated');
-      });
-  }, []);
+    const fetchMessage = async () => {
+        try {
+            const response = await axios.get('/api/message');
+            setUser(response.data);
+        } catch (error) {
+            console.error('Error fetching message:', error);
+        }
+    };
+
+    fetchMessage();
+}, []);
 
   const logout = () => {
     window.open('http://localhost:5000/logout', '_self');
