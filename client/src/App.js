@@ -6,7 +6,7 @@ import Form from "./components/Form";
 import "./components/assets";
 import Assets from "./components/assets";
 
-var userIsRegistered = true;
+var userIsRegistered = false;
 
 function App() {
   return (
