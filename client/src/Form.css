@@ -1,0 +1,121 @@
+/* Center the form container on the screen
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* Style the form heading */
+  .form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Style input fields */
+  .form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form input:focus {
+    border-color: #6e8efb;
+    box-shadow: 0 0 8px rgba(110, 142, 251, 0.2);
+    outline: none;
+  }
+  
+  /* Style error and success messages */
+  .error-message,
+  .success-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  /* Style buttons */
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .toggle-button {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .toggle-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+  }
+  
+  /* Ensure responsive design */
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 10px;
+    }
+  
+    .form {
+      padding: 20px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  }
+   */
